@@ -1,10 +1,10 @@
-Package: net.winneonsword.package
-Name: Test Package
+Package: net.peng81828.tweak
+Name: Empty Tweak
 Version: 1.0
 Architecture: iphoneos-arm
-Description: This is a test package from /u/WinneonSword's tutorial repository!
-Depiction: http://repo.winneonsword.net/packages/package.html
-Homepage: http://repo.winneonsword.net
-Maintainer: Jesse Bryan <winneonsword@gmail.com>
-Author: Jesse Bryan <winneonsword@gmail.com>
-Section: Themes
+Description: Empty test package.
+Depiction: http://peng81828.github.io/depictions/emptytweak.html
+Homepage: http://peng81828.github.io/repo
+Maintainer: Peng81828 <surveysandbeermoney@gmail.com>
+Author: Peng81828 <surveysandbeermoney@gmail.com>
+Section: Tweaks
