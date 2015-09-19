@@ -1,0 +1,435 @@
+{
+    "definitions": {
+        "documentation": {
+            "__prefix": "wsdl",
+            "__text": "\nPrepa Breakdown Report\n"
+        },
+        "types": {
+            "schema": [
+                {
+                    "complexType": [
+                        {
+                            "sequence": {
+                                "element": [
+                                    {
+                                        "_minOccurs": "0",
+                                        "_name": "r2Area",
+                                        "_nillable": "true",
+                                        "_type": "xs:string",
+                                        "__prefix": "xs"
+                                    },
+                                    {
+                                        "_minOccurs": "0",
+                                        "_name": "r3Status",
+                                        "_nillable": "true",
+                                        "_type": "xs:string",
+                                        "__prefix": "xs"
+                                    },
+                                    {
+                                        "_minOccurs": "0",
+                                        "_name": "r1TownOrCity",
+                                        "_nillable": "true",
+                                        "_type": "xs:string",
+                                        "__prefix": "xs"
+                                    },
+                                    {
+                                        "_minOccurs": "0",
+                                        "_name": "r4LastUpdate",
+                                        "_nillable": "true",
+                                        "_type": "xs:string",
+                                        "__prefix": "xs"
+                                    }
+                                ],
+                                "__prefix": "xs"
+                            },
+                            "_name": "BreakdownArea",
+                            "__prefix": "xs"
+                        },
+                        {
+                            "sequence": {
+                                "element": [
+                                    {
+                                        "_minOccurs": "0",
+                                        "_name": "r1TownOrCity",
+                                        "_nillable": "true",
+                                        "_type": "xs:string",
+                                        "__prefix": "xs"
+                                    },
+                                    {
+                                        "_minOccurs": "0",
+                                        "_name": "r2TotalBreakdowns",
+                                        "_type": "xs:int",
+                                        "__prefix": "xs"
+                                    }
+                                ],
+                                "__prefix": "xs"
+                            },
+                            "_name": "BreakdownSummary",
+                            "__prefix": "xs"
+                        }
+                    ],
+                    "_attributeFormDefault": "qualified",
+                    "_elementFormDefault": "qualified",
+                    "_targetNamespace": "http://persistence.breakdown.prepa.com/xsd",
+                    "__prefix": "xs"
+                },
+                {
+                    "import": {
+                        "_namespace": "http://persistence.breakdown.prepa.com/xsd",
+                        "__prefix": "xs"
+                    },
+                    "element": [
+                        {
+                            "complexType": {
+                                "sequence": {
+                                    "element": {
+                                        "_minOccurs": "0",
+                                        "_name": "townOrCity",
+                                        "_nillable": "true",
+                                        "_type": "xs:string",
+                                        "__prefix": "xs"
+                                    },
+                                    "__prefix": "xs"
+                                },
+                                "__prefix": "xs"
+                            },
+                            "_name": "getBreakdownsByTownOrCity",
+                            "__prefix": "xs"
+                        },
+                        {
+                            "complexType": {
+                                "sequence": {
+                                    "element": {
+                                        "_maxOccurs": "unbounded",
+                                        "_minOccurs": "0",
+                                        "_name": "return",
+                                        "_nillable": "true",
+                                        "_type": "ax22:BreakdownArea",
+                                        "__prefix": "xs"
+                                    },
+                                    "__prefix": "xs"
+                                },
+                                "__prefix": "xs"
+                            },
+                            "_name": "getBreakdownsByTownOrCityResponse",
+                            "__prefix": "xs"
+                        },
+                        {
+                            "complexType": {
+                                "sequence": {
+                                    "element": {
+                                        "_maxOccurs": "unbounded",
+                                        "_minOccurs": "0",
+                                        "_name": "return",
+                                        "_nillable": "true",
+                                        "_type": "ax22:BreakdownSummary",
+                                        "__prefix": "xs"
+                                    },
+                                    "__prefix": "xs"
+                                },
+                                "__prefix": "xs"
+                            },
+                            "_name": "getBreakdownsSummaryResponse",
+                            "__prefix": "xs"
+                        }
+                    ],
+                    "_xmlns:ax22": "http://persistence.breakdown.prepa.com/xsd",
+                    "_attributeFormDefault": "qualified",
+                    "_elementFormDefault": "qualified",
+                    "_targetNamespace": "http://ws.breakdown.prepa.com",
+                    "__prefix": "xs"
+                }
+            ],
+            "__prefix": "wsdl"
+        },
+        "message": [
+            {
+                "part": {
+                    "_name": "parameters",
+                    "_element": "ns:getBreakdownsByTownOrCity",
+                    "__prefix": "wsdl"
+                },
+                "_name": "getBreakdownsByTownOrCityRequest",
+                "__prefix": "wsdl"
+            },
+            {
+                "part": {
+                    "_name": "parameters",
+                    "_element": "ns:getBreakdownsByTownOrCityResponse",
+                    "__prefix": "wsdl"
+                },
+                "_name": "getBreakdownsByTownOrCityResponse",
+                "__prefix": "wsdl"
+            },
+            {
+                "_name": "getBreakdownsSummaryRequest",
+                "__prefix": "wsdl"
+            },
+            {
+                "part": {
+                    "_name": "parameters",
+                    "_element": "ns:getBreakdownsSummaryResponse",
+                    "__prefix": "wsdl"
+                },
+                "_name": "getBreakdownsSummaryResponse",
+                "__prefix": "wsdl"
+            }
+        ],
+        "portType": {
+            "operation": [
+                {
+                    "input": {
+                        "_message": "ns:getBreakdownsByTownOrCityRequest",
+                        "_wsaw:Action": "urn:getBreakdownsByTownOrCity",
+                        "__prefix": "wsdl"
+                    },
+                    "output": {
+                        "_message": "ns:getBreakdownsByTownOrCityResponse",
+                        "_wsaw:Action": "urn:getBreakdownsByTownOrCityResponse",
+                        "__prefix": "wsdl"
+                    },
+                    "_name": "getBreakdownsByTownOrCity",
+                    "__prefix": "wsdl"
+                },
+                {
+                    "input": {
+                        "_message": "ns:getBreakdownsSummaryRequest",
+                        "_wsaw:Action": "urn:getBreakdownsSummary",
+                        "__prefix": "wsdl"
+                    },
+                    "output": {
+                        "_message": "ns:getBreakdownsSummaryResponse",
+                        "_wsaw:Action": "urn:getBreakdownsSummaryResponse",
+                        "__prefix": "wsdl"
+                    },
+                    "_name": "getBreakdownsSummary",
+                    "__prefix": "wsdl"
+                }
+            ],
+            "_name": "BreakdownReportPortType",
+            "__prefix": "wsdl"
+        },
+        "binding": [
+            {
+                "binding": {
+                    "_transport": "http://schemas.xmlsoap.org/soap/http",
+                    "_style": "document",
+                    "__prefix": "soap"
+                },
+                "operation": [
+                    {
+                        "operation": {
+                            "_soapAction": "urn:getBreakdownsByTownOrCity",
+                            "_style": "document",
+                            "__prefix": "soap"
+                        },
+                        "input": {
+                            "body": {
+                                "_use": "literal",
+                                "__prefix": "soap"
+                            },
+                            "__prefix": "wsdl"
+                        },
+                        "output": {
+                            "body": {
+                                "_use": "literal",
+                                "__prefix": "soap"
+                            },
+                            "__prefix": "wsdl"
+                        },
+                        "_name": "getBreakdownsByTownOrCity",
+                        "__prefix": "wsdl"
+                    },
+                    {
+                        "operation": {
+                            "_soapAction": "urn:getBreakdownsSummary",
+                            "_style": "document",
+                            "__prefix": "soap"
+                        },
+                        "input": {
+                            "body": {
+                                "_use": "literal",
+                                "__prefix": "soap"
+                            },
+                            "__prefix": "wsdl"
+                        },
+                        "output": {
+                            "body": {
+                                "_use": "literal",
+                                "__prefix": "soap"
+                            },
+                            "__prefix": "wsdl"
+                        },
+                        "_name": "getBreakdownsSummary",
+                        "__prefix": "wsdl"
+                    }
+                ],
+                "_name": "BreakdownReportSoap11Binding",
+                "_type": "ns:BreakdownReportPortType",
+                "__prefix": "wsdl"
+            },
+            {
+                "binding": {
+                    "_transport": "http://schemas.xmlsoap.org/soap/http",
+                    "_style": "document",
+                    "__prefix": "soap12"
+                },
+                "operation": [
+                    {
+                        "operation": {
+                            "_soapAction": "urn:getBreakdownsByTownOrCity",
+                            "_style": "document",
+                            "__prefix": "soap12"
+                        },
+                        "input": {
+                            "body": {
+                                "_use": "literal",
+                                "__prefix": "soap12"
+                            },
+                            "__prefix": "wsdl"
+                        },
+                        "output": {
+                            "body": {
+                                "_use": "literal",
+                                "__prefix": "soap12"
+                            },
+                            "__prefix": "wsdl"
+                        },
+                        "_name": "getBreakdownsByTownOrCity",
+                        "__prefix": "wsdl"
+                    },
+                    {
+                        "operation": {
+                            "_soapAction": "urn:getBreakdownsSummary",
+                            "_style": "document",
+                            "__prefix": "soap12"
+                        },
+                        "input": {
+                            "body": {
+                                "_use": "literal",
+                                "__prefix": "soap12"
+                            },
+                            "__prefix": "wsdl"
+                        },
+                        "output": {
+                            "body": {
+                                "_use": "literal",
+                                "__prefix": "soap12"
+                            },
+                            "__prefix": "wsdl"
+                        },
+                        "_name": "getBreakdownsSummary",
+                        "__prefix": "wsdl"
+                    }
+                ],
+                "_name": "BreakdownReportSoap12Binding",
+                "_type": "ns:BreakdownReportPortType",
+                "__prefix": "wsdl"
+            },
+            {
+                "binding": {
+                    "_verb": "POST",
+                    "__prefix": "http"
+                },
+                "operation": [
+                    {
+                        "operation": {
+                            "_location": "BreakdownReport/getBreakdownsByTownOrCity",
+                            "__prefix": "http"
+                        },
+                        "input": {
+                            "content": {
+                                "_type": "text/xml",
+                                "_part": "getBreakdownsByTownOrCity",
+                                "__prefix": "mime"
+                            },
+                            "__prefix": "wsdl"
+                        },
+                        "output": {
+                            "content": {
+                                "_type": "text/xml",
+                                "_part": "getBreakdownsByTownOrCity",
+                                "__prefix": "mime"
+                            },
+                            "__prefix": "wsdl"
+                        },
+                        "_name": "getBreakdownsByTownOrCity",
+                        "__prefix": "wsdl"
+                    },
+                    {
+                        "operation": {
+                            "_location": "BreakdownReport/getBreakdownsSummary",
+                            "__prefix": "http"
+                        },
+                        "input": {
+                            "content": {
+                                "_type": "text/xml",
+                                "_part": "getBreakdownsSummary",
+                                "__prefix": "mime"
+                            },
+                            "__prefix": "wsdl"
+                        },
+                        "output": {
+                            "content": {
+                                "_type": "text/xml",
+                                "_part": "getBreakdownsSummary",
+                                "__prefix": "mime"
+                            },
+                            "__prefix": "wsdl"
+                        },
+                        "_name": "getBreakdownsSummary",
+                        "__prefix": "wsdl"
+                    }
+                ],
+                "_name": "BreakdownReportHttpBinding",
+                "_type": "ns:BreakdownReportPortType",
+                "__prefix": "wsdl"
+            }
+        ],
+        "service": {
+            "port": [
+                {
+                    "address": {
+                        "_location": "http://wss.prepa.com/services/BreakdownReport.BreakdownReportHttpSoap11Endpoint/",
+                        "__prefix": "soap"
+                    },
+                    "_name": "BreakdownReportHttpSoap11Endpoint",
+                    "_binding": "ns:BreakdownReportSoap11Binding",
+                    "__prefix": "wsdl"
+                },
+                {
+                    "address": {
+                        "_location": "http://wss.prepa.com/services/BreakdownReport.BreakdownReportHttpSoap12Endpoint/",
+                        "__prefix": "soap12"
+                    },
+                    "_name": "BreakdownReportHttpSoap12Endpoint",
+                    "_binding": "ns:BreakdownReportSoap12Binding",
+                    "__prefix": "wsdl"
+                },
+                {
+                    "address": {
+                        "_location": "http://wss.prepa.com/services/BreakdownReport.BreakdownReportHttpEndpoint/",
+                        "__prefix": "http"
+                    },
+                    "_name": "BreakdownReportHttpEndpoint",
+                    "_binding": "ns:BreakdownReportHttpBinding",
+                    "__prefix": "wsdl"
+                }
+            ],
+            "_name": "BreakdownReport",
+            "__prefix": "wsdl"
+        },
+        "_xmlns:wsdl": "http://schemas.xmlsoap.org/wsdl/",
+        "_xmlns:ns1": "http://org.apache.axis2/xsd",
+        "_xmlns:ns": "http://ws.breakdown.prepa.com",
+        "_xmlns:wsaw": "http://www.w3.org/2006/05/addressing/wsdl",
+        "_xmlns:http": "http://schemas.xmlsoap.org/wsdl/http/",
+        "_xmlns:ax21": "http://persistence.breakdown.prepa.com/xsd",
+        "_xmlns:xs": "http://www.w3.org/2001/XMLSchema",
+        "_xmlns:soap": "http://schemas.xmlsoap.org/wsdl/soap/",
+        "_xmlns:mime": "http://schemas.xmlsoap.org/wsdl/mime/",
+        "_xmlns:soap12": "http://schemas.xmlsoap.org/wsdl/soap12/",
+        "_targetNamespace": "http://ws.breakdown.prepa.com",
+        "__prefix": "wsdl"
+    }
+}
