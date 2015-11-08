@@ -1,0 +1,221 @@
+<!-- <div id="output"></div>
+<script src="http://js.leapmotion.com/leap-0.6.4.min.js"></script>
+<script>
+// listen to Leap Motion
+Leap.loop({enableGestures: true}, function(obj) {
+  if (obj.gestures.length > 0) {
+    obj.gestures.forEach(function(gesture) {
+      output(gesture);
+    });
+  }
+});
+
+var outputDiv = document.getElementById("output");
+function output(json) {
+  var div = document.createElement("div")
+  div.innerHTML = JSON.stringify(json) + "<br/>";
+  outputDiv.insertBefore(div, outputDiv.firstChild);
+};
+
+</script>
+<style>
+body {
+  font-size: 10px;
+  font-family: Helvetica, sans-serif;
+}
+</style> -->
+
+
+
+<html>
+<head>
+
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/three.js/r68/three.js"></script>
+  <script src="http://js.leapmotion.com/leap-0.6.4.js"></script>
+  <script src="http://js.leapmotion.com/leap-plugins-0.1.10.js"></script>
+  <script src="https://leapmotion.github.io/leapjs-plugins/main/bone-hand/lib/OrbitControls.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+  <script src="http://intridea.github.io/sketch.js/lib/sketch.js"></script>
+
+  <script src="leap.bone-hand.js"></script>
+  <style>
+    html, body {
+      margin: 10px;
+      font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+      background-color: #36bad6;
+    }
+    canvas.leap-boneHand {
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: none;
+    }
+    table, th, td {
+      border: 1px solid #aaa;
+    }
+    table {
+      border-collapse: collapse;
+    }
+    td, th {
+      vertical-align: top;
+      padding: 3px;
+    }
+    th {
+      color: #555;
+    }
+    #view-source {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 10px;
+    }
+    #output{
+      font-size: 66px;
+      color: #d65236;
+      text-align: left;
+      position: fixed;
+      bottom: 18px;
+    }
+    #progress {
+      background: #259bb4;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      height: 16px;
+      width: 0%;
+      opacity:0.7;
+    }
+    span {
+      font-weight:bold;
+    }
+    .title {
+      font-size: 24px;
+    }
+  </style>
+
+</head>
+<body>
+<center>
+<p class="title">Sticky Fingers! </p>
+<span id="countdown" class="timer"></span>
+<p id="score"></p>
+<script>
+
+//Show Image
+
+function show_image(src, width, height, alt) {
+    var img = document.createElement("img");
+    img.src = "http://i.imgur.com/Ji7BN7U.jpg";
+    img.width = "460";
+    img.height = "345";
+    img.alt = "Thumbs up!";
+
+    // This next line will just add it to the <body> tag
+    document.body.appendChild(img);
+}
+
+</script>
+<!-- <canvas id="simple_sketch" width="800" height="300"></canvas> -->
+<!-- <script>document.write("Score: " + score);</script> -->
+<span id="score"></span>
+<div id="output"> </div>
+<div id="progress"></div>
+</center>
+</body>
+
+<script type="text/javascript">
+  $(function() {
+    $('#simple_sketch').sketch();
+  });
+</script>
+<script>
+
+   var seconds = 60;
+      function secondPassed() {
+        var minutes = Math.round((seconds - 30)/60);
+        var remainingSeconds = seconds % 60;
+        if (remainingSeconds < 10) {
+          remainingSeconds = "0" + remainingSeconds;  
+    }
+    document.getElementById('countdown').innerHTML = minutes + ":" + remainingSeconds;
+    if (seconds == 0) {
+        show_image();
+        alert("Time's Up!");
+        clearInterval(countdownTimer);
+        document.getElementById('countdown').innerHTML = "Time's up!";
+    } else {
+        seconds--;
+    }
+var output = document.getElementById('output'),
+  progress = document.getElementById('progress'); 
+  // Set up plugins
+
+  Leap.loop()
+    .use('boneHand', {
+      targetEl: document.body,
+      arm: true,
+      opacity: 0.8
+  });
+
+
+  // Set up scene
+  var scene    = Leap.loopController.plugins.boneHand.scene;
+  var camera   = Leap.loopController.plugins.boneHand.camera;
+  var renderer = Leap.loopController.plugins.boneHand.renderer;
+
+  var plane = new THREE.Mesh(
+    new THREE.PlaneGeometry(80,80),
+    new THREE.MeshPhongMaterial({wireframe: false})
+  );
+
+
+  plane.scale.set(2,2,2);
+  plane.position.set(0,200,-100);
+
+  camera.lookAt( plane.position );
+
+//  scene.add(plane);
+
+  var axisHelper = new THREE.AxisHelper( 100 );
+  scene.add( axisHelper );
+
+  var controls = new THREE.OrbitControls( camera, renderer.domElement );
+
+
+  Leap.loopController.on('handFound', function(hand) {
+    document.querySelector('canvas').style.display = 'block';
+  }).on('handLost', function(hand){
+    if (Leap.loopController.frame(0).hands.length === 0){
+      document.querySelector('canvas').style.display = 'none';
+    }
+  });
+
+// calling pinchstrength
+  var output = document.getElementById('output'),
+  progress = document.getElementById('progress'); 
+  var score = 0;
+
+  function scoreIncrement() {
+    score++;
+    document.getElementById('score').innerHTML ="Score: " + score;
+}
+  
+  // Set up the controller:
+  Leap.loop({background: true}, {
+
+    hand: function(hand){
+    
+    output.innerHTML = hand.pinchStrength.toPrecision(2);
+    progress.style.width = hand.pinchStrength * 100 + '%';
+    var countdownTimer = setInterval('secondPassed()', 1000);
+
+    if (output.innerHTML == 1) {
+      scoreIncrement();
+      secondPassed();
+    }
+  }
+});
+
+</script>
+
+</html>
