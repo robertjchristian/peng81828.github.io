@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+
+<head>
+    <title>AngularJS</title>
+
+    <!-- load bootstrap and fontawesome via CDN -->
+    <link rel="stylesheet" href="lib/bootstrap.paper.min.css" />
+
+    <!-- load angular via CDN -->
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-route.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
+</head>
+<style>
+    html,
+    body,
+    input,
+    select,
+    textarea {
+        font-size: 1.05em !important;
+    }
+</style>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/#/">AngularJS</a>
+                </div>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a href="#/second"><i class="fa fa-home"></i> Second</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div ng-controller='myController'>
+            <!-- <h1> Mi nombre es <span ng-bind="name"> </span>. Tengo <span ng-bind="edad"> </span>.</h1> -->
+
+            <div ng-view>
+
+    </div>
+
+</body>
+
+</html>
