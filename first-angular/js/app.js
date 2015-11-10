@@ -14,7 +14,7 @@ myApp.config(function ($routeProvider) {
 });
 
 myApp.controller('secondController', function($scope) {
-		$scope.secondname = "Pingadulce";
+		$scope.secondname = "Money";
 });
 
 myApp.controller('myController', function($scope) {
