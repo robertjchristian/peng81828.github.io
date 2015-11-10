@@ -10,11 +10,15 @@ myApp.config(function ($routeProvider) {
 		templateUrl: 'pages/secondpage.html',
 		controller: 'secondController'
 	})
+	.when('/#/', {
+		templateUrl: 'pages/myPage.html',
+		controller: 'myController'
+	})
 
 });
 
 myApp.controller('secondController', function($scope) {
-		$scope.secondname = "Money";
+		$scope.secondName = "Slim Shady";
 });
 
 myApp.controller('myController', function($scope) {
